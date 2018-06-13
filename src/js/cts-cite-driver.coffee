@@ -147,7 +147,7 @@ build_cts_ui = ->
   $('#translation_progress').attr('style',"width: #{progress}%;")
   $('#translation_progress').append $('<span>').text("#{translated_urns} / #{valid_urns.length} entries translated")
   if window.location.hash
-    window.scrollTo(0,$(window.location.hash).position().top - 50)
+    window.scrollTo(0,$(decodeURIComponent(window.location.hash)).position().top - 50)
 
 # get all data from fusion table
 get_cite_collection = (callback) ->
