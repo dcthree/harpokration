@@ -1,0 +1,7 @@
+kramdown:
+  input: GFM
+  hard_wrap: false
+baseurl: /harpokration
+plugins:
+  - jekyll-coffeescript
+  - jekyll-paginate
