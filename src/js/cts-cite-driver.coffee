@@ -8,7 +8,7 @@ valid_urns = []
 cite_collection = {}
 
 default_cts_cite_collection_driver_config =
-  google_api_key: 'AIzaSyACO-ZANrYxHFG44v8kqsfGb6taylh2aDk'
+  google_api_key: 'AIzaSyCsBB8U6qfzFKFXWWpm8AN3iooxey_7lKU'
   cts_endpoint: '1_DFxPLkDrZt2JTgFo04nI6zQ9AsnnqMNRlUBb2Sq'
   cts_urn: 'urn:cts:greekLit:tlg1389.tlg001.dc3'
   cite_table_id: '1YOwprxInXb03cho6DQ20jVefAHF6a3fqhj3SGIxk'
@@ -54,7 +54,7 @@ add_translations = (urn) ->
   urn_selector = "li##{urn_to_id(urn)}"
   if cite_collection.rows?
     matching_rows = cite_collection.rows.filter (row) -> row[1] == urn
-    if matching_rows.length > 0
+    if matching_rows? and matching_rows.length > 0
       $(urn_selector).addClass('has_translation')
       # $(urn_selector).prepend ' \u2713'
       $(urn_selector).append $('<br>')
@@ -202,4 +202,4 @@ $(document).ready ->
   $(document).ajaxStop -> $('#loadingDiv').hide()
   cts_cite_collection_driver_config = $.extend({}, default_cts_cite_collection_driver_config, window.cts_cite_collection_driver_config)
   console.log(cts_cite_collection_driver_config['cite_collection_editor_url'])
-  build_cts_cite_driver()
+  # build_cts_cite_driver()
