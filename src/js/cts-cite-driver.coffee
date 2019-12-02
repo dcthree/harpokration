@@ -124,6 +124,12 @@ cite_collection_contains_urn = (urn) ->
       return true
   return false
 
+set_progress = (translated_urns, total_urns) ->
+  progress = translated_urns/total_urns * 100.0
+  console.log("Progress: #{progress}")
+  $('#translation_progress').attr('style',"width: #{progress}%;")
+  $('#translation_progress').append $('<span>').text("#{translated_urns} / #{total_urns} entries translated")
+
 build_cts_ui = ->
   $('#all_entries_button').click(show_all)
   $('#translated_button').click(show_translated)
@@ -141,11 +147,7 @@ build_cts_ui = ->
 
     if cite_collection_contains_urn(urn[0])
       translated_urns += 1
-
-  progress = translated_urns/valid_urns.length * 100.0
-  console.log("Progress: #{progress}")
-  $('#translation_progress').attr('style',"width: #{progress}%;")
-  $('#translation_progress').append $('<span>').text("#{translated_urns} / #{valid_urns.length} entries translated")
+  set_progress(translated_urns, valid_urns.length)
   if window.location.hash
     window.scrollTo(0,$(decodeURIComponent(window.location.hash)).position().top - 50)
 
@@ -202,4 +204,5 @@ $(document).ready ->
   $(document).ajaxStop -> $('#loadingDiv').hide()
   cts_cite_collection_driver_config = $.extend({}, default_cts_cite_collection_driver_config, window.cts_cite_collection_driver_config)
   console.log(cts_cite_collection_driver_config['cite_collection_editor_url'])
+  set_progress(1247, 1247)
   # build_cts_cite_driver()
